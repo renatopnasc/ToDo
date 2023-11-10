@@ -31,6 +31,7 @@ export function App() {
       (task) => task !== taskToDelete
     );
 
+    redoTask();
     setTasksList(taskListWithoutDeletedOne);
   }
 
@@ -39,7 +40,9 @@ export function App() {
   }
 
   function redoTask() {
-    setCompletedTasks((state) => state - 1);
+    if (completedTasks > 0) {
+      setCompletedTasks((state) => state - 1);
+    }
   }
 
   return (
@@ -92,6 +95,7 @@ export function App() {
                 onDeleteTask={deleteTask}
                 onComplete={completeTask}
                 onRedo={redoTask}
+                key={task}
               />
             ))}
         </div>
