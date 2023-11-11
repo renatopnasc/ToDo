@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: none;
 
   -webkit-font-smoothing: antialiased;
 }
@@ -23,6 +22,11 @@
   --purple-700: #5e60ce;
 
   --red-500: #e25858;
+}
+
+:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 2px var(--blue-500);
 }
 
 body,

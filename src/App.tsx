@@ -26,12 +26,13 @@ export function App() {
     setTask("");
   }
 
-  function deleteTask(taskToDelete: string) {
+  function deleteTask(taskToDelete: string, checked: boolean) {
     const taskListWithoutDeletedOne = tasksList.filter(
       (task) => task !== taskToDelete
     );
 
-    redoTask();
+    if (checked) redoTask();
+
     setTasksList(taskListWithoutDeletedOne);
   }
 
@@ -93,8 +94,8 @@ export function App() {
               <Task
                 content={task}
                 onDeleteTask={deleteTask}
-                onComplete={completeTask}
-                onRedo={redoTask}
+                onCompleteTask={completeTask}
+                onRedoTask={redoTask}
                 key={task}
               />
             ))}

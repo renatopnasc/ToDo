@@ -5,12 +5,17 @@ import { Trash } from "phosphor-react";
 
 interface TaskProps {
   content: string;
-  onDeleteTask: (task: string) => void;
-  onComplete: () => void;
-  onRedo: () => void;
+  onDeleteTask: (task: string, checked: boolean) => void;
+  onCompleteTask: () => void;
+  onRedoTask: () => void;
 }
 
-export function Task({ content, onDeleteTask, onComplete, onRedo }: TaskProps) {
+export function Task({
+  content,
+  onDeleteTask,
+  onCompleteTask,
+  onRedoTask,
+}: TaskProps) {
   const [isChecked, setIsChecked] = useState(false);
 
   function handleCheckboxChange() {
@@ -24,12 +29,12 @@ export function Task({ content, onDeleteTask, onComplete, onRedo }: TaskProps) {
         type="checkbox"
         onChange={handleCheckboxChange}
         className={isChecked ? style.checkedInput : ""}
-        onClick={isChecked ? onRedo : onComplete}
+        onClick={isChecked ? onRedoTask : onCompleteTask}
       />
 
       <p className={isChecked ? style.checked : ""}>{content}</p>
 
-      <button onClick={() => onDeleteTask(content)}>
+      <button onClick={() => onDeleteTask(content, isChecked ? true : false)}>
         <Trash size={14} />
       </button>
     </div>
